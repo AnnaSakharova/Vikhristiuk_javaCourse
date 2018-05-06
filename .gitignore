@@ -21,3 +21,6 @@ sandbox/build/scripts/sandbox.bat
 sandbox/build/tmp/jar/MANIFEST.MF
 sandbox/out/production/classes/MyFirstProgram.class
 .idea/workspace.xml
+sandbox/out/production/classes/pg/mfp/sandbox/Distance.class
+sandbox/out/production/classes/pg/mfp/sandbox/MyFirstProgram.class
+sandbox/out/production/classes/pg/mfp/sandbox/Point.class
