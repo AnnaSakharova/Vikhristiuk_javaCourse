@@ -11,6 +11,6 @@ public class Point {
 
   public String distance(Point p2) {
     double distance = Math.sqrt(Math.pow((p2.x-this.x),2) + Math.pow((p2.y-this.y),2));
-    return String.format("%.4g%n", distance);
+    return String.format("%(.2f", distance);
   }
 }
