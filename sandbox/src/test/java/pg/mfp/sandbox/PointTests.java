@@ -6,12 +6,6 @@ import org.testng.annotations.Test;
 public class PointTests {
 
 
-  public void distanceCalculation(double x1, double y1, double x2, double y2, String result) {
-    Point p1 = new Point(x1, y1);
-    Point p2 = new Point (x2, y2);
-    Assert.assertEquals(p1.distance(p2), result);
-  }
-
   @Test
   public void testDistance1() {
     Point p1 = new Point(2, 2);
