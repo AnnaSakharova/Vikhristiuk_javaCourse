@@ -25,3 +25,5 @@ sandbox/out/production/classes/pg/mfp/sandbox/Distance.class
 sandbox/out/production/classes/pg/mfp/sandbox/MyFirstProgram.class
 sandbox/out/production/classes/pg/mfp/sandbox/Point.class
 sandbox/out/test/classes/pg/mfp/sandbox/PointTests.class
+addressbook-web-tests/out/test/classes/pg/mft/addressbook/ContactCreationTest.class
+*.class
