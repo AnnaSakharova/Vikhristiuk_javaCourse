@@ -1,9 +1,10 @@
-package pg.mft.addressbook.tests;
+package pg.mft.addressbook.tests.contactTests;
 
 import org.testng.annotations.Test;
+import pg.mft.addressbook.tests.TestBase;
 
 
-public class ContactDeletionTests extends TestBase{
+public class ContactDeletionTests extends TestBase {
 
 
     @Test
