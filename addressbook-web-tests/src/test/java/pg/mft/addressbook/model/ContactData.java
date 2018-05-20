@@ -1,4 +1,4 @@
-package pg.mft.addressbook;
+package pg.mft.addressbook.model;
 
 public class ContactData {
   private final String firstName;
