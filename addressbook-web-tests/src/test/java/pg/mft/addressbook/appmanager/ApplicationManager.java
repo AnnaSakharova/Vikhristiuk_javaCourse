@@ -1,21 +1,39 @@
 package pg.mft.addressbook.appmanager;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.safari.SafariDriver;
+import sun.plugin2.util.BrowserType;
 
 import java.util.concurrent.TimeUnit;
 
 public class ApplicationManager {
 
-  FirefoxDriver wd;
+  WebDriver wd;
 
   private GroupHelper groupHelper;
   private ContactHelper contactHelper;
   private NavigationHelper navigationHelper;
   private SessionHelper sessionHelper;
+  private int browser;
+
+  public ApplicationManager(int browser) {
+    this.browser = browser;
+  }
 
   public void init() {
-    wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Program Files (x86)\\Mozilla Firefox52\\firefox.exe"));
+    if (browser == BrowserType.MOZILLA) {
+      wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Program Files (x86)\\Mozilla Firefox52\\firefox.exe"));
+    } else if (browser == BrowserType.DEFAULT) {
+      wd = new ChromeDriver();
+    } else if (browser == BrowserType.INTERNET_EXPLORER) {
+      wd = new InternetExplorerDriver();
+    } else if (browser == BrowserType.SAFARI_MACOSX) {
+      wd = new SafariDriver();
+    }
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost/addressbook/");
     groupHelper = new GroupHelper(wd);
