@@ -1,7 +1,9 @@
 package pg.mft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import pg.mft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
@@ -14,7 +16,7 @@ public class ContactHelper extends HelperBase {
       wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  public void fillContactForm(ContactData contactData) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     fieldFilling("firstname", contactData.getFirstName());
     fieldFilling("middlename", contactData.getMiddleName());
     fieldFilling("lastname", contactData.getLastName());
@@ -37,6 +39,13 @@ public class ContactHelper extends HelperBase {
        click(By.xpath("//div[@id='content']/form/select[2]//option[" + contactData.getBirthMonth() + "]"));
       }
     fieldFilling("byear", contactData.getBirthYear());
+
+    if(creation) {
+      valueSelection("new_group", contactData.getGroup());
+    } else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
+
     fieldFilling("address2", contactData.getAddress2());
     fieldFilling("phone2", contactData.getPhone2());
     fieldFilling("notes", contactData.getNotes());
@@ -57,5 +66,15 @@ public class ContactHelper extends HelperBase {
 
   public void submitContactModification() {
     click(By.name("update"));
+  }
+
+  public void createContact(ContactData contactData, boolean creation) {
+    fillContactForm(contactData, creation);
+    submitContactForm();
+
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }
