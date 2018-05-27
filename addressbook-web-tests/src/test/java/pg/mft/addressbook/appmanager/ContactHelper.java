@@ -2,7 +2,6 @@ package pg.mft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pg.mft.addressbook.model.ContactData;
 
 public class ContactHelper extends HelperBase {
