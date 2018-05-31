@@ -28,11 +28,11 @@ public class ApplicationManager {
   public void init() {
     if (browser.equals(BrowserType.FIREFOX)) {
       wd = new FirefoxDriver(new FirefoxOptions().setLegacy(true).setBinary("C:\\Program Files (x86)\\Mozilla Firefox52\\firefox.exe"));
-    } else if (browser == BrowserType.CHROME) {
+    } else if (browser.equals(BrowserType.CHROME)) {
       wd = new ChromeDriver();
-    } else if (browser == BrowserType.IE) {
+    } else if (browser.equals(BrowserType.IE)) {
       wd = new InternetExplorerDriver();
-    } else if (browser == BrowserType.OPERA) {
+    } else if (browser.equals(BrowserType.OPERA)) {
       wd = new SafariDriver();
     }
     wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
