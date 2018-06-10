@@ -1,29 +1,29 @@
 package pg.mft.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String firstName;
- // private final String middleName;
-  private final String lastName;
-/*  private final String nickName;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String homePhone;
-  private final String mobilePhone;
-  private final String workPhone;
-  private final String faxPhone;
-  private final String email1;
-  private final String email2;
-  private final String email3;
-  private final String homePage;
-  private final String birthDay;
-  private final String birthMonth;
-  private final String birthYear;
-  private final String group;
-  private final String address2;
-  private final String phone2;
-  private final String notes;*/
+  private int id = Integer.MAX_VALUE;
+  private String firstName;
+  private String middleName;
+  private String lastName;
+  private String nickName;
+  private String title;
+  private String company;
+  private String address;
+  private String homePhone;
+  private String mobilePhone;
+  private String workPhone;
+  private String faxPhone;
+  private String email1;
+  private String email2;
+  private String email3;
+  private String homePage;
+  private String birthDay;
+  private String birthMonth;
+  private String birthYear;
+  private String group;
+  private String address2;
+  private String phone2;
+  private String notes;
 
   @Override
   public boolean equals(Object o) {
@@ -32,13 +32,15 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != that.id) return false;
     if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
     return lastName != null ? lastName.equals(that.lastName) : that.lastName == null;
   }
 
   @Override
   public int hashCode() {
-    int result = firstName != null ? firstName.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
     result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
     return result;
   }
@@ -52,57 +54,6 @@ public class ContactData {
             '}';
   }
 
-  public ContactData(int id, String firstName, String middleName, String lastName, String nickName, String title, String company, String address, String homePhone, String mobilePhone, String workPhone, String faxPhone, String email1, String email2, String email3, String homePage, String birthDay, String birthMonth, String birthYear, String group, String address2, String phone2, String notes) {
-    this.id = id;
-    this.firstName = firstName;
-   // this.middleName = middleName;
-    this.lastName = lastName;
-/*    this.nickName = nickName;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.homePhone = homePhone;
-    this.mobilePhone = mobilePhone;
-    this.workPhone = workPhone;
-    this.faxPhone = faxPhone;
-    this.email1 = email1;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homePage = homePage;
-    this.birthDay = birthDay;
-    this.birthMonth = birthMonth;
-    this.birthYear = birthYear;
-    this.group = group;
-    this.address2 = address2;
-    this.phone2 = phone2;
-    this.notes = notes;*/
-  }
-
-  public ContactData(String firstName, String middleName, String lastName, String nickName, String title, String company, String address, String homePhone, String mobilePhone, String workPhone, String faxPhone, String email1, String email2, String email3, String homePage, String birthDay, String birthMonth, String birthYear, String group, String address2, String phone2, String notes) {
-    this.id = Integer.MAX_VALUE;
-    this.firstName = firstName;
-  //  this.middleName = middleName;
-    this.lastName = lastName;
-/*    this.nickName = nickName;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.homePhone = homePhone;
-    this.mobilePhone = mobilePhone;
-    this.workPhone = workPhone;
-    this.faxPhone = faxPhone;
-    this.email1 = email1;
-    this.email2 = email2;
-    this.email3 = email3;
-    this.homePage = homePage;
-    this.birthDay = birthDay;
-    this.birthMonth = birthMonth;
-    this.birthYear = birthYear;
-    this.group = group;
-    this.address2 = address2;
-    this.phone2 = phone2;
-    this.notes = notes;*/
-  }
 
   public int getId() {
     return id;
@@ -112,15 +63,15 @@ public class ContactData {
     return firstName;
   }
 
- /* public String getMiddleName() {
+  public String getMiddleName() {
     return middleName;
-  }*/
+  }
 
   public String getLastName() {
     return lastName;
   }
 
- /* public String getNickName() {
+  public String getNickName() {
     return nickName;
   }
 
@@ -192,9 +143,120 @@ public class ContactData {
 
   public String getNotes() {
     return notes;
-  }*/
+  }
 
-  public void setId(int id) {
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withMiddleName(String middleName) {
+    this.middleName = middleName;
+    return this;
+  }
+
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withNickName(String nickName) {
+    this.nickName = nickName;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
+  public ContactData withFaxPhone(String faxPhone) {
+    this.faxPhone = faxPhone;
+    return this;
+  }
+
+  public ContactData withEmail1(String email1) {
+    this.email1 = email1;
+    return this;
+  }
+
+  public ContactData withEmail2(String email2) {
+    this.email2 = email2;
+    return this;
+  }
+
+  public ContactData withEmail3(String email3) {
+    this.email3 = email3;
+    return this;
+  }
+
+  public ContactData withHomePage(String homePage) {
+    this.homePage = homePage;
+    return this;
+  }
+
+  public ContactData withBirthDay(String birthDay) {
+    this.birthDay = birthDay;
+    return this;
+  }
+
+  public ContactData withBirthMonth(String birthMonth) {
+    this.birthMonth = birthMonth;
+    return this;
+  }
+
+  public ContactData withBirthYear(String birthYear) {
+    this.birthYear = birthYear;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withAddress2(String address2) {
+    this.address2 = address2;
+    return this;
+  }
+
+  public ContactData withPhone2(String phone2) {
+    this.phone2 = phone2;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
+    this.notes = notes;
+    return this;
   }
 }

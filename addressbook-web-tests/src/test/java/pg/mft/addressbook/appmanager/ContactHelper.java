@@ -4,9 +4,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import pg.mft.addressbook.model.ContactData;
+import pg.mft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ContactHelper extends HelperBase {
 
@@ -53,18 +55,27 @@ public class ContactHelper extends HelperBase {
     fieldFilling("notes", contactData.getNotes());*/
   }
 
-  public void deleteSelectedContacts() {
-      click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
-      isAlertPresent();
+
+  public void delete(ContactData contact) {
+    selectById(String.valueOf(contact.getId()));
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+    isAlertPresent();
   }
 
-  public void select(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void modify(ContactData contact) {
+    initModificationById(contact.getId());
+    fill(contact, false);
+    submitModification();
   }
 
-  public void initModification(Integer stringNumber) {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[" + stringNumber + "]/td[8]/a/img"));
+  private void selectById(String id) {
+    wd.findElement(By.id(id)).click();
   }
+
+  public void initModificationById(int id) {
+    click(By.cssSelector("a[href=\"edit.php?id=" + id + "\"]"));
+  }
+
 
   public void submitModification() {
     click(By.name("update"));
@@ -84,17 +95,18 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Contacts all() {
+    Contacts contacts = new Contacts();
     List<WebElement> entries = wd.findElements(By.name("entry"));
     List<WebElement> strings;
     for (WebElement entry : entries) {
       strings = entry.findElements(By.tagName("td"));
       int id = Integer.parseInt(entry.findElement(By.name("selected[]")).getAttribute("value"));
-      ContactData contact = new ContactData(id, strings.get(2).getText(), null, strings.get(1).getText(), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withId(id).withFirstName(strings.get(2).getText()).withLastName(strings.get(1).getText()));
       strings.clear();
     }
     return contacts;
   }
+
+
 }
