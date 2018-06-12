@@ -11,6 +11,9 @@ import pg.mft.addressbook.tests.TestBase;
 
 import java.util.Set;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 
 public class ContactDeletionTests extends TestBase {
 
@@ -32,9 +35,9 @@ public class ContactDeletionTests extends TestBase {
         ContactData deletedContact = before.iterator().next();
         app.contact().delete(deletedContact);
         app.goTo().homePage();
+        Assert.assertEquals(app.contact().count(), before.size() - 1);
         Contacts after = app.contact().all();
-        Assert.assertEquals(after.size(), before.size() - 1);
-        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withoutAdded(deletedContact)));
+        assertThat(after, equalTo(before.withoutAdded(deletedContact)));
     }
 
 }
